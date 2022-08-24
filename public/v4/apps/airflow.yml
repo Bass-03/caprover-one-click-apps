@@ -79,10 +79,6 @@ caproverOneClickApp:
           label: DAGs Volume
           defaultValue: airflow-dags
           description: Name of the DAG volume or Path to the custom DAGs folder, make sure the folder is accesible
-        - id: $$cap_airflow_sc
-          label: Path or volume to hold your secrets
-          defaultValue: airflow-requstxt
-          description: Sometimes you need to add a file with credentials, put it here
         - id: $$cap_airflow_py_requirements
           label: Path or volume to a requirements.txt file
           defaultValue: airflow-requstxt
@@ -169,7 +165,6 @@ services:
         volumes:
             - $$cap_airflow_dag_path:/opt/bitnami/airflow/dags
             - $$cap_airflow_py_requirements:/bitnami/python/requirements.txt
-            - $$cap_airflow_sc:/opt/bitnami/airflow/sc
         caproverExtra:
             containerHttpPort: '8080'
 
@@ -193,7 +188,6 @@ services:
             - $$cap_appname-data:/opt/bitnami/airflow/data
             - $$cap_airflow_dag_path:/opt/bitnami/airflow/dags
             - $$cap_airflow_py_requirements:/bitnami/python/requirements.txt
-            - $$cap_airflow_sc:/opt/bitnami/airflow/sc
         caproverExtra:
             notExposeAsWebApp: true
 
@@ -218,6 +212,5 @@ services:
         volumes:
             - $$cap_airflow_dag_path:/opt/bitnami/airflow/dags
             - $$cap_airflow_py_requirements:/bitnami/python/requirements.txt
-            - $$cap_airflow_sc:/opt/bitnami/airflow/sc
         caproverExtra:
             notExposeAsWebApp: true
